@@ -1,0 +1,16 @@
+﻿{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "RabbitMq.Consumer": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development",
+        "RABBITMQ_USER": "admin",
+        "RABBITMQ_PASSWORD": "admin",
+        "RABBITMQ_HOST": "localhost",
+        "RABBITMQ_QUEUE_NAME": "rabbitmq-example-queue"
+      }
+    }
+  }
+}

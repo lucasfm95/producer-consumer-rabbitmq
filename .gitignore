@@ -1,0 +1,7 @@
+.idea
+.env
+
+src/RabbitMq.Producer/obj/
+src/RabbitMq.Producer/bin/
+src/RabbitMq.Consumer/bin/
+src/RabbitMq.Consumer/obj/

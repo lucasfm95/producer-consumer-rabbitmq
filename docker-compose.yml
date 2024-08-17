@@ -1,0 +1,64 @@
+name: "rabbitmq-example"
+services:
+  rabbitmq:
+    container_name: "rabbitmq"
+    image: "rabbitmq:3.13-management"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+        - "rabbitmq-data:/var/lib/rabbitmq"
+    restart: unless-stopped
+    networks:
+      - "rabbitmq-network"
+    environment:
+      RABBITMQ_DEFAULT_USER: "${RABBITMQ_USER}"
+      RABBITMQ_DEFAULT_PASS: "${RABBITMQ_PASSWORD}"
+  
+  producerApi:
+    container_name: "producerApi"
+    image: "producer-api:latest"
+    build:
+      context: ./src/RabbitMq.Producer/
+      dockerfile: Dockerfile
+      args:
+        version: latest
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    networks:
+      - "rabbitmq-network"
+    environment:
+      RABBITMQ_HOST: "${RABBITMQ_HOST}"
+      RABBITMQ_USER: "${RABBITMQ_USER}"
+      RABBITMQ_PASSWORD: "${RABBITMQ_PASSWORD}"
+      RABBITMQ_QUEUE_NAME: "${RABBITMQ_QUEUE_NAME}"
+    depends_on:
+      - rabbitmq
+
+  consumerWorker:
+    container_name: "consumerWorker"
+    image: "consumer-worker:latest"
+    build:
+      context: ./src/RabbitMq.Consumer/
+      dockerfile: Dockerfile
+      args:
+        version: latest
+    restart: unless-stopped
+    networks:
+      - "rabbitmq-network"
+    environment:
+      RABBITMQ_HOST: "${RABBITMQ_HOST}"
+      RABBITMQ_USER: "${RABBITMQ_USER}"
+      RABBITMQ_PASSWORD: "${RABBITMQ_PASSWORD}"
+      RABBITMQ_QUEUE_NAME: "${RABBITMQ_QUEUE_NAME}"
+    depends_on:
+        - rabbitmq
+        - producerApi
+volumes:
+  rabbitmq-data:
+    external: false
+
+networks:
+  rabbitmq-network:
+    external: false
