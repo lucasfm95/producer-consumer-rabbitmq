@@ -15,6 +15,19 @@ services:
       RABBITMQ_DEFAULT_USER: "${RABBITMQ_USER}"
       RABBITMQ_DEFAULT_PASS: "${RABBITMQ_PASSWORD}"
   
+  rabbitmq-mass-transit:
+    container_name: "rabbitmq-mass-transit"
+    image: masstransit/rabbitmq
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+    restart: unless-stopped
+    networks:
+      - "rabbitmq-network"
+    environment:
+      RABBITMQ_DEFAULT_USER: "${RABBITMQ_USER}"
+      RABBITMQ_DEFAULT_PASS: "${RABBITMQ_PASSWORD}"
+
   producerApi:
     container_name: "producerApi"
     image: "producer-api:latest"
@@ -35,6 +48,7 @@ services:
       RABBITMQ_QUEUE_NAME: "${RABBITMQ_QUEUE_NAME}"
     depends_on:
       - rabbitmq
+      - rabbitmq-mass-transit
 
   consumerWorker:
     container_name: "consumerWorker"
@@ -54,7 +68,9 @@ services:
       RABBITMQ_QUEUE_NAME: "${RABBITMQ_QUEUE_NAME}"
     depends_on:
         - rabbitmq
+        - rabbitmq-mass-transit
         - producerApi
+
 volumes:
   rabbitmq-data:
     external: false

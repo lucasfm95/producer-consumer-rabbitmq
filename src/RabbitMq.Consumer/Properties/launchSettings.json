@@ -9,7 +9,11 @@
         "RABBITMQ_USER": "admin",
         "RABBITMQ_PASSWORD": "admin",
         "RABBITMQ_HOST": "localhost",
-        "RABBITMQ_QUEUE_NAME": "rabbitmq-example-queue"
+        "RABBITMQ_QUEUE_NAME": "rabbitmq-example-queue",
+        "USE_MASS_TRANSIT": "false",
+        "MASS_TRANSIT_QUEUE_NAME": "masstransit-example-queue",
+        "MASS_TRANSIT_HOST": "localhost",
+        "MASS_TRANSIT_PORT": "5673"
       }
     }
   }

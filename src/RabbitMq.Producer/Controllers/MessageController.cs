@@ -1,16 +1,18 @@
 using System.Text;
 using System.Text.Json;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using RabbitMQ.Client;
-using RabbitMq.Domain.Requests;
+using RabbitMq.Core;
 
 namespace RabbitMq.Producer.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class MessageController(ILogger<MessageController> logger) : ControllerBase
+public class MessageController(ILogger<MessageController> logger, IBus bus) : ControllerBase
 {
     private static int _messageId;
+    
     [HttpPost]
     public IActionResult SendMessage([FromBody] MessagePostRequest request)
     {
@@ -35,6 +37,18 @@ public class MessageController(ILogger<MessageController> logger) : ControllerBa
         channel.BasicPublish("", queueName, null, body);
         
         logger.LogInformation($"Message sent: {message}");
+        
+        return Ok("your message has been sent");
+    }
+
+    [HttpPost("MassTransit")]
+    public async Task<IActionResult> SendMessageMassTransit([FromBody] MessagePostRequest request)
+    {
+        var queueName = Environment.GetEnvironmentVariable("MASS_TRANSIT_QUEUE_NAME") ?? string.Empty;
+        
+        var endpoint = await bus.GetSendEndpoint(new Uri($"queue:{queueName}"));
+        
+        await endpoint.Send(request);
         
         return Ok("your message has been sent");
     }

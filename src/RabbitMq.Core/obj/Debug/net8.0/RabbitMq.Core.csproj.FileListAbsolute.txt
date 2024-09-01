@@ -1,0 +1,12 @@
+C:\Projects\estudos\rabbitmq-example\src\RabbitMq.Core\bin\Debug\net8.0\RabbitMq.Core.deps.json
+C:\Projects\estudos\rabbitmq-example\src\RabbitMq.Core\bin\Debug\net8.0\RabbitMq.Core.dll
+C:\Projects\estudos\rabbitmq-example\src\RabbitMq.Core\bin\Debug\net8.0\RabbitMq.Core.pdb
+C:\Projects\estudos\rabbitmq-example\src\RabbitMq.Core\obj\Debug\net8.0\RabbitMq.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\estudos\rabbitmq-example\src\RabbitMq.Core\obj\Debug\net8.0\RabbitMq.Core.AssemblyInfoInputs.cache
+C:\Projects\estudos\rabbitmq-example\src\RabbitMq.Core\obj\Debug\net8.0\RabbitMq.Core.AssemblyInfo.cs
+C:\Projects\estudos\rabbitmq-example\src\RabbitMq.Core\obj\Debug\net8.0\RabbitMq.Core.csproj.CoreCompileInputs.cache
+C:\Projects\estudos\rabbitmq-example\src\RabbitMq.Core\obj\Debug\net8.0\RabbitMq.Core.sourcelink.json
+C:\Projects\estudos\rabbitmq-example\src\RabbitMq.Core\obj\Debug\net8.0\RabbitMq.Core.dll
+C:\Projects\estudos\rabbitmq-example\src\RabbitMq.Core\obj\Debug\net8.0\refint\RabbitMq.Core.dll
+C:\Projects\estudos\rabbitmq-example\src\RabbitMq.Core\obj\Debug\net8.0\RabbitMq.Core.pdb
+C:\Projects\estudos\rabbitmq-example\src\RabbitMq.Core\obj\Debug\net8.0\ref\RabbitMq.Core.dll

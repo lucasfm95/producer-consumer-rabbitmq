@@ -1,6 +1,6 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace RabbitMq.Domain.Requests;
+namespace RabbitMq.Core;
 
 public class MessagePostRequest
 {
